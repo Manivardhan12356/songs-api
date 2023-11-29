@@ -8,6 +8,14 @@ app.get('/', (req, res) => {
    
 });
 
+app.use((req, res, next) => {
+   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+   // You can use '*' instead of 'http://localhost:3000' to allow any origin
+   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+   next();
+});
+
 app.listen(process.env.PORT || port, () => {
    console.log(`Server is running on http://localhost:${port}`);
 });
